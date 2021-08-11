@@ -1,0 +1,31 @@
+body,
+html {
+    height: 100%;
+    font-family: PMingLiU;
+    /* font-family: "PMingLiU",
+        "Inconsolata",
+        sans-serif,
+    ; */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span {
+    color: rgb(82, 82, 82);
+
+}
+
+.bgimg {
+    background-position: center;
+    background-size: cover;
+    background-image: url("img/Ai_Dark.png");
+    min-height: 75%;
+}
+
+.menu {
+    display: none;
+}
