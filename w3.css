@@ -372,7 +372,8 @@ a {
     background-color: inherit;
     text-align: center;
     cursor: pointer;
-    white-space: nowrap
+    white-space: nowrap;
+    margin: 3px;
 }
 
 .w3-btn:hover {
@@ -1626,6 +1627,12 @@ a {
 .w3-hover-sand:hover {
     color: #000 !important;
     background-color: #fdf5e6 !important
+}
+
+.w3-sand2,
+.w3-hover-sand2:hover {
+    color: rgb(122, 122, 122) !important;
+    background-color: #242424 !important
 }
 
 .w3-teal,
