@@ -34,8 +34,30 @@ const story2=["傍晚，橘紅色的夕陽暈染半片天空。這座城市在�
 "「沒帶…我這就去找！」說完，助手立刻轉身跑開，只留給你一個慌張的背影。",
 "你愣愣地走回講台，知道一切已經失序，而你面前正雙手抱胸的客戶，向你投來等待的眼神。",
 "接下來的半個小時，你聽見自己的嗓音逐漸嘶啞，多次練習使講稿自動化地從口中輸出，但你的腦子仍是一片空白。",
-"僵硬的雙腳被釘在原地，你使勁露出笑容，顫抖的肌肉卻讓笑容變成一副難堪的表情…。"
+"僵硬的雙腳被釘在原地，你使勁露出笑容，顫抖的肌肉卻讓笑容變成一副難堪的表情…。",
+"(轉場)",
+"(暱稱)，(暱稱)~你怎麼啦 ?",
+"你回過神來，才發現自己已經回到家中。眼前是你的小夥伴---AI。",
+"你看起來好沮喪，嘴角都要垂到下巴了。",
+"和你住在同一個屋簷下的AI，是你最好的朋友、推心置腹的家人。",
+"少了職場的明爭暗鬥、現實的人情冷暖，你與AI之間有十足的信任，也知道他一心向你。",
+"看看都是誰把你欺負傻了，整個人呆愣愣的，連話都不會說。",
+"是發生了什麼事嗎？"
 ];
+
+const choice={
+1:["就像今天早上因為下雨特地提早出門一樣，變化也在你的計畫之內。",
+"公司派你出征，也是看中你的可靠、嚴謹。",
+"像平時一樣對待就好了。你這麼告訴自己。"],
+2:["雖說做簡報這件事你已經歷了無數次，力求完美的你總會收穫人們的讚賞。",
+"可這些好評反倒加深了你的完美主義，深怕一旦犯錯，以往的功績會遭人遺棄。",
+"於是你陷入了重蹈覆輒的擔憂。",
+"拜託讓今天和往常一樣吧。你這麼告訴自己。"],
+3:["每次上陣前，你總會戰戰兢兢地做好各種準備。",
+"而後收獲的美好結果讓你手握證據，使理智打敗緊繃。",
+"讓今天的戰役再為勝場添上一筆吧。你這麼告訴自己。"]
+};
+
 
 const end_one=["是啊，還沒走到結局呢…又或者說世上有任何事是有結局的嗎？",
 "你想起早上那場似乎會下一個世紀的滂沱大雨，不到一天時間便還給這座城市一片澄澈的天空。",
@@ -237,21 +259,23 @@ const paragraph13=["怎麼會呢？我需要充電才能維持運作，人也是
 "何況現在掌握權不在你手中，硬撐著也解決不了問題呀。"];
 
 const story_between_options={
-0:paragraph0,
 1:paragraph1,
 2:paragraph2,
 11:paragraph11,
 12:paragraph12,
 13:paragraph13,
 111:paragraph111,
+112:[],
 121:paragraph121,
 122:paragraph122,
 1111:paragraph1111,
 1112:paragraph1112,
+1113:[],
 1211:paragraph1211,
 1212:paragraph1212,
 1213:paragraph1213,
 1221:paragraph1221,
+1222:[],
 11121:paragraph11121,
 11122:paragraph11122,
 12111:paragraph12111,
@@ -278,19 +302,25 @@ const story_between_options={
 
 var stage=0;
 var story_number=0;
-var state="1";
-var tell_story=true;
+var state="";
+var opening_state="";
+var tell_story=false;
+var opening1=true;
+var opening2=true;
+var opening_choice=true;
 
 function merge_check(_state){
 if(_state==="2"){
+    sendtext();
     state="1";
-    story_number=11;
+    story_number=9;
     tell_story=true;
     changebutton();
     return true;
 }
 
 if(_state==="13"){
+    sendtext();
     state="121";
     story_number=0;
     tell_story=true;
@@ -314,6 +344,7 @@ if(_state === "1222"){
 }
 
 if(_state === "1213"){
+    sendtext();
     state="1112";
     story_number=3;
     tell_story=true;
@@ -328,6 +359,7 @@ if(_state === "1113"){
     return true;
 }
 if(_state === "1111"){
+    sendtext();
     state="1211";
     story_number=0;
     tell_story=false;
@@ -342,9 +374,10 @@ function story_manage(){
         story_number++;
         return;
     }
-    sendtext();
-    if(merge_check(state))
+    if(merge_check(state)){
         return;
+    }
+    sendtext();
     story_number=0;
     tell_story=false;
     changebutton();
@@ -385,18 +418,85 @@ function changebutton(){
 }
 
 function for_opening(){
-
+    if(opening1){
+        if(story_number+1<story1.length){
+            document.getElementById("btn0").innerHTML="NEXT";
+            document.getElementById("paragraph1").innerHTML=story1[story_number];
+            story_number++;
+            return;
+        }
+        document.getElementById("paragraph1").innerHTML=story1[story_number];
+        story_number=0;
+        document.getElementById("btn0").style.display="none";
+        opening1=false;
+        document.getElementById("btn01").style.display="block";
+        document.getElementById("btn02").style.display="block";
+        document.getElementById("btn03").style.display="block";
+        return;
+    }
+    if(opening_choice){
+    if(story_number+1<choice[opening_state].length){
+            document.getElementById("paragraph1").innerHTML=choice[opening_state][story_number];
+            story_number++;
+            return;
+        }
+        document.getElementById("paragraph1").innerHTML=choice[opening_state][story_number];
+        story_number=0;
+        opening_choice=false;
+        return;
+    }
+    if(opening2){
+        
+        if(story_number+1<story2.length){
+            document.getElementById("paragraph1").innerHTML=story2[story_number];
+            story_number++;
+            return;
+        }
+        document.getElementById("paragraph1").innerHTML=story2[story_number];
+        story_number=0;
+        document.getElementById("btn0").style.display="none";
+        opening2=false;
+        changebutton();
+        document.getElementById("btn1").style.display="block";
+        document.getElementById("btn2").style.display="block";
+        return;
+    }
 }
-    
+
+function choice_close(){
+document.getElementById("btn01").style.display="none";
+document.getElementById("btn02").style.display="none";
+document.getElementById("btn03").style.display="none";
+document.getElementById("btn0").style.display="block";
+return;
+}
 
 // =======================================================================================
-//                          START CODING PART (CONNECTED TO HTML FILE)
+//                          CODING PART (OPENING)
 // =======================================================================================
 
 function btnclick0(e){
 for_opening();
 }
+function btnclick01(e){
+choice_close();
+opening_state+="1";
+for_opening();
+}
+function btnclick02(e){
+choice_close();
+opening_state+="2";
+for_opening();
+}
+function btnclick03(e){
+choice_close();
+opening_state+="3";
+for_opening();
+}
 
+// =======================================================================================
+//                          CODING PART (MAIN BODY)
+// =======================================================================================
 
 function btnclick1(e){
 changephoto();
