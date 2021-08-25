@@ -40,14 +40,22 @@
 </header>
 <!-- w3-grayscale -->
 <!-- Add a background color and large text to the whole page -->
-<div class="w3-dark-gray w3-large" style="background-color: black;">
-
+<div class="w3-sand2 w3-large">
+<div class="w3-dark-gray w3-content" style="max-width:1200px">
 <!-- About Container -->
 <div class="w3-container" id="about">
-  <div class="w3-content" style="max-width:900px">
+  <div class="w3-content" style="max-width:800px">
     <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">ABOUT US</span></h5>
-    <p>這裡適合放一些概念性的敘述，還有說明一下遊戲進行的模式</p>
-    <p>大概是這樣ㄅ，我還沒想好要寫什麼。</p>
+    <p>在人工智慧領域中,除了智能層面,情感層面也是一大重點,對以陪伴或服務為主要功能的語音助理,能運用對話同理並理解使用者的情緒是非常有利的,不僅可以避免刺激使用者,
+    增加使用者的情緒負擔,還可以讓使用者更願意敞開心扉,
+    了解使用者真正的心事,提供更準確的陪伴服務,然而,這種情感向的語料庫至
+    今仍供不需求,因此,團隊希望透過創作大量富技巧性對話策略供機器人學習,以期未來人工智慧能更貼近人類內心,提供更好的服務。</p>
+    <p>
+    團隊成員透過一學期的課堂修習,了解情感智能領域在人工智慧的重要性,並培養了創作語料的基本能力,而後團隊成員進一步的針對上班族和老年族群創作一系列的語料創作,經過 5 個月的時間,共創作近 3600 種對話可能。在創作前後,
+    成員也分別進行田野調查和回測,以避免語料設計落於空談,沒有實際作用。除了語料設計外,團隊也創立了擴音 callin 粉專,實際與網民互動測試對話,進一
+    步確認對話在現實中是否可能。</p>
+    <p>此外,團隊製作了 rpg 遊戲和 Linebot,希望透過這兩個體驗活動展示創作成果,透過親自操作,使用者可以身歷其境的感受未來可能世界中,機器人將如何擔任
+    陪伴的角色,並透過恰到好處的對話策略轉化使用者的情緒,幫助使用者轉移焦點,避免陷入長時間的負面情緒,保持良好心態。</p>
     <!-- <div class="w3-panel w3-leftbar w3-light-grey">
       <p><i>"Use products from nature for what it's worth - but never too early, nor too late." Fresh is the new sweet.</i></p>
       <p>Chef, Coffeeist and Owner: Liam Brown</p>
@@ -61,21 +69,27 @@
 </div>
 
 <div class="w3-container" id="game">
-  <div class="w3-content" style="max-width:700px">
+  <div class="w3-content" style="max-width:800px">
     <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">GAME</span></h5>
-    <p>應該會有一些文字。</p>
-    <p>啊啊啊啊啊啊，我還沒想好要寫什麼。</p>
+    <p>一個普通的演講者,一個普通的菜鳥職員,一次普通的會議,一個猝不及防的意
+外。</p>
+<p>兩個相交的故事線,將會如何交織成形?
+不同角色、不同立場的兩人,被扯後腿的人和扯別人後腿的人,面對這場意外,
+兩人會做何反應?
+面對陷入低潮的主人翁,小機器人又該怎麼辦?</p>
+遊戲中你將前後扮演演講者和菜鳥職員的角色,在劇情進行途中,你可以選擇不
+同的情緒狀態或回應,根據不同的選擇,劇情發展也會有所不同,面對主人翁失
+落的情緒,小機器人會怎麼承接這些負面能量呢?又會怎麼讓主人恢復笑容呢?
+接下來,邀請你按下按鍵,進入到這個普通到不能再普通的故事......</p>
     <!-- <div class="w3-panel w3-leftbar w3-light-grey">
       <p><i>"Use products from nature for what it's worth - but never too early, nor too late." Fresh is the new sweet.</i></p>
       <p>Chef, Coffeeist and Owner: Liam Brown</p>
     </div> -->
-    <img src="img/stage/3.JPG" style="width:100%;max-width:700px" class="w3-margin-top w3-black w3-padding-large" id="stage">
-    <div id="text" class=" w3-sand2">
-        <p id="paragraph1" style="padding: 5px;">我們來玩一個遊戲。</p>
-        <p id="paragraph2"></p>
-        <p id="paragraph3"></p>
+    <img src="img/background/01.jpg" style="width: 100%; max-width:900px; align-self: center;" class="w3-margin-top w3-sand2 w3-padding-large" id="stage">
+    <div id="text" class=" w3-sand2 my_center w3-margin-top" style="max-width:900px; height:72px;">
+        <p id="paragraph1" style="padding: 8px;">我們來玩一個遊戲。</p>
     </div>
-    <div id="button" class="my_center">
+    <div id="button" class="my_center w3-margin-top">
          <button id="btn0" class="w3-center w3-button w3-gray " style="width: 75%;" onclick="btnclick0(event)">START</button>
     </div>
     <div id="button" class="my_center">
@@ -103,10 +117,12 @@
 
 
 <div class="w3-container" id="linebot">
-  <div class="w3-content" style="max-width:900px">
+  <div class="w3-content" style="max-width:800px">
     <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">LINEBOT</span></h5>
-    <p>介紹LINEBOT的文字。</p>
-    <p>啊啊啊啊啊啊，我還沒想好要寫什麼。</p>
+    <p>在 Linebot 裡面,我們設計了一些日常對話,請使用者先輸入「今天過得還不錯,
+挺開心的」,在對話中,使用者有 2-3 個回復可以選擇,不同的選擇會開啟不同
+的對話線,Linebot 也會針對不同的選擇,採取不同的回覆方針,我們希望人工
+智慧能採取「有情商」的回覆方式,並透過對話策略轉化使用者的負面情緒。</p>
     <p>ID: @638jgwpn</p>
     <!-- <div class="w3-panel w3-leftbar w3-light-grey">
       <p><i>"Use products from nature for what it's worth - but never too early, nor too late." Fresh is the new sweet.</i></p>
@@ -119,11 +135,13 @@
   </div>
 </div>
 
+<br>
+<br>
+<br>
+
+</div>
 
 
-<br>
-<br>
-<br>
 
 
 

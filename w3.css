@@ -1683,6 +1683,14 @@ a {
     background-color: #616161 !important
 }
 
+.w3-darker-grey,
+.w3-hover-darker-grey:hover,
+.w3-darker-gray,
+.w3-hover-darker-gray:hover {
+    color: #fff !important;
+    background-color: #2e2e2e !important
+}
+
 .w3-pale-red,
 .w3-hover-pale-red:hover {
     color: #000 !important;
