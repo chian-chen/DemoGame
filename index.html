@@ -69,23 +69,22 @@
 </div>
 
 <div class="w3-container" id="game">
-  <div class="w3-content" style="max-width:800px">
+  <div class="w3-content" style="max-width:750px">
     <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">GAME</span></h5>
-    <p>一個普通的演講者,一個普通的菜鳥職員,一次普通的會議,一個猝不及防的意
-外。</p>
-<p>兩個相交的故事線,將會如何交織成形?
-不同角色、不同立場的兩人,被扯後腿的人和扯別人後腿的人,面對這場意外,
-兩人會做何反應?
-面對陷入低潮的主人翁,小機器人又該怎麼辦?</p>
-遊戲中你將前後扮演演講者和菜鳥職員的角色,在劇情進行途中,你可以選擇不
-同的情緒狀態或回應,根據不同的選擇,劇情發展也會有所不同,面對主人翁失
-落的情緒,小機器人會怎麼承接這些負面能量呢?又會怎麼讓主人恢復笑容呢?
-接下來,邀請你按下按鍵,進入到這個普通到不能再普通的故事......</p>
+    <p>一個普通的演講者，一個普通的菜鳥職員，一次普通的會議，一個猝不及防的意外。</p>
+    <p>兩個相交的故事線，將會如何交織成形?
+    不同角色、不同立場的兩人，被扯後腿的人和扯別人後腿的人，面對這場意外，
+    兩人會做何反應？
+    面對陷入低潮的主人翁，小機器人又該怎麼辦？</p>
+    遊戲中你將前後扮演演講者和菜鳥職員的角色，在劇情進行途中，你可以選擇不
+    同的情緒狀態或回應，根據不同的選擇，劇情發展也會有所不同，面對主人翁失
+    落的情緒，小機器人會怎麼承接這些負面能量呢？又會怎麼讓主人恢復笑容呢？
+    接下來，邀請你按下按鍵，進入到這個普通到不能再普通的故事......</p>
     <!-- <div class="w3-panel w3-leftbar w3-light-grey">
       <p><i>"Use products from nature for what it's worth - but never too early, nor too late." Fresh is the new sweet.</i></p>
       <p>Chef, Coffeeist and Owner: Liam Brown</p>
     </div> -->
-    <img src="img/background/01.jpg" style="width: 100%; max-width:900px; align-self: center;" class="w3-margin-top w3-sand2 w3-padding-large" id="stage">
+    <img src="img/background/15.jpg" style="width: 100%; max-width:900px; align-self: center;" class="w3-margin-top w3-sand2 w3-padding-large" id="stage">
     <div id="text" class=" w3-sand2 my_center w3-margin-top" style="max-width:900px; height:72px;">
         <p id="paragraph1" style="padding: 8px;">我們來玩一個遊戲。</p>
     </div>
@@ -110,6 +109,9 @@
     <div id="button" class="my_center">
          <button id="btn3" class="w3-center w3-button w3-gray " style="width: 75%; display: none;" onclick="btnclick3(event)">Option3</button>
     </div>
+    <div id="button" class="my_center">
+         <button id="restart" class="w3-center w3-button w3-gray " style="width: 75%; display: none;" onclick="restart(event)">Restart</button>
+    </div>
     <!-- <p><strong>Opening hours:</strong> everyday from 6am to 5pm.</p>
     <p><strong>Address:</strong> 15 Adr street, 5015, NY</p> -->
   </div>
@@ -119,10 +121,10 @@
 <div class="w3-container" id="linebot">
   <div class="w3-content" style="max-width:800px">
     <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">LINEBOT</span></h5>
-    <p>在 Linebot 裡面,我們設計了一些日常對話,請使用者先輸入「今天過得還不錯,
-挺開心的」,在對話中,使用者有 2-3 個回復可以選擇,不同的選擇會開啟不同
-的對話線,Linebot 也會針對不同的選擇,採取不同的回覆方針,我們希望人工
-智慧能採取「有情商」的回覆方式,並透過對話策略轉化使用者的負面情緒。</p>
+    <p>在 Linebot 裡面,我們設計了一些日常對話,請使用者先輸入「今天過得還不錯，
+    挺開心的」，在對話中，使用者有 2-3 個回復可以選擇，不同的選擇會開啟不同
+    的對話線，Linebot也會針對不同的選擇，採取不同的回覆方針，我們希望人工
+    智慧能採取「有情商」的回覆方式，並透過對話策略轉化使用者的負面情緒。</p>
     <p>ID: @638jgwpn</p>
     <!-- <div class="w3-panel w3-leftbar w3-light-grey">
       <p><i>"Use products from nature for what it's worth - but never too early, nor too late." Fresh is the new sweet.</i></p>
@@ -220,6 +222,14 @@
 <!-- End page content -->
 </div>
 
+<audio id ="music01" preload="auto" src="audio/01下雨.mp3" loop>
+</audio>
+<audio id ="music02" preload="auto" src="audio/02舒緩音樂.mp3">
+</audio>
+<audio id ="music03" preload="auto" src="audio/03會議.mp3">
+</audio>
+<audio id ="music04" preload="auto" src="audio/04家中.mp3" loop>
+</audio>
 <!-- Footer -->
 <footer class="w3-center w3-black w3-padding-48 w3-large">
   <p>Chian-Chen</p>

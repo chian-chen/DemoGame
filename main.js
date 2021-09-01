@@ -22,6 +22,7 @@ const story1=["早上八點鐘。你坐在車內，下意識地聽著那些被�
 const story2=["傍晚，橘紅色的夕陽暈染半片天空。這座城市在白天擺脫了陰霾，可你現在巴不得再來場傾盆大雨。",
 "這樣你失控的喊叫就能被嘩啦啦的水聲淹沒，不讓旁人注意。",
 "在進家門之前，你腦中不斷重播今天下午的悲劇…",
+"（轉場）",
 "會議上。你整理好袖口和領子，掛起招牌笑容，踩著自信的步伐走到台上。",
 "講桌上的電腦秀著剛才助手開好的簡報檔，這位籌辦了會議召集和設備的屬下還貼心地幫你做了備忘錄，但你根本不需要。",
 "為這次簡報練講過數十次的你，早就將講稿熟記於心，甚至在說到某些關鍵詞的手勢和動作，你都精心設計。",
@@ -152,8 +153,8 @@ const paragraph1=["你長嘆一口氣，向AI娓娓道來。",
 "AI：啊…好了好了。",
 "AI：我聽明白了，你先別急，慢慢深吸幾口氣。",
 "隨著AI的引導，你的呼吸漸漸平復下來，但腦子仍是一片混亂。",
-"當時你為了解決突發狀況，一定消耗了不少元氣。",
-"今天要好好休息才行。"
+"AI：當時你為了解決突發狀況，一定消耗了不少元氣。",
+"AI：今天要好好休息才行。"
 ];
 
 const paragraph2=["你搖搖頭，整個人陷進沙發裡。",
@@ -315,6 +316,7 @@ if(_state==="2"){
     story_number=9;
     tell_story=true;
     changebutton();
+    changephoto();
     return true;
 }
 
@@ -324,6 +326,7 @@ if(_state==="13"){
     story_number=0;
     tell_story=true;
     changebutton();
+    changephoto();
     return true;
 }
 if(_state==="112"){
@@ -331,6 +334,7 @@ if(_state==="112"){
     story_number=0;
     tell_story=true;
     changebutton();
+    changephoto();
     return true;
 }
 
@@ -339,6 +343,7 @@ if(_state === "1222"){
     story_number=0;
     tell_story=true;
     changebutton();
+    changephoto();
     return true;
 }
 
@@ -348,6 +353,7 @@ if(_state === "1213"){
     story_number=3;
     tell_story=true;
     changebutton();
+    changephoto();
     return true;
 }
 if(_state === "1113"){
@@ -355,6 +361,7 @@ if(_state === "1113"){
     story_number=0;
     tell_story=true;
     changebutton();
+    changephoto();
     return true;
 }
 if(_state === "1111"){
@@ -363,6 +370,7 @@ if(_state === "1111"){
     story_number=0;
     tell_story=false;
     changebutton();
+    changephoto();
     return true;
 }
 }
@@ -371,6 +379,7 @@ function story_manage(){
     if(story_number+1<story_between_options[state].length){
         sendtext();
         story_number++;
+        changephoto();
         return;
     }
     if(merge_check(state)){
@@ -379,23 +388,110 @@ function story_manage(){
     sendtext();
     story_number=0;
     tell_story=false;
+    changephoto();
     changebutton();
+    End_check();
 }
 
 
 function sendtext(){
 document.getElementById("paragraph1").innerHTML=story_between_options[state][story_number];
+console.log(state);
+console.log(story_number);
 }
 
-function changephoto(){
-    // if(state!=""||state!="")
-    //     return;
-    let photopath="img/background/";
-    number=Math.floor(Math.random()*5)+1;
-    photopath+="0"+number+".jpg";
-    document.getElementById("stage").src=photopath;
-    return;
+function End_check(){
+if(story_between_options[state+"1"]===undefined && story_between_options[state+"2"]===undefined && story_between_options[state+"3"]===undefined){
+document.getElementById("btn1").style.display="none";
+document.getElementById("restart").style.display="block";
+document.getElementById("stage").src="img/background/14.jpg";
 }
+return;
+}
+
+// function changephoto(){
+//     // if(state!=""||state!="")
+//     //     return;
+//     // let photopath="img/background/";
+//     // number=Math.floor(Math.random()*5)+1;
+//     // photopath+="0"+number+".jpg";
+//     // document.getElementById("stage").src=photopath;
+//     // return;
+// }
+
+const stage_photo=document.getElementById("stage");
+
+function changephoto(){
+if(opening1 && story_number===3)
+    stage_photo.src="img/background/01.jpg";
+else if(opening1 && story_number===9)
+    stage_photo.src="img/background/02.jpg";
+else if(!opening1 && opening_choice && story_number===0)
+    stage_photo.src="img/background/03.jpg";
+else if(!opening1 && opening_choice && story_number===1)
+    stage_photo.src="img/background/02.jpg";
+else if(!opening1 && opening2 && story_number===1)
+    stage_photo.src="img/background/04.jpg";
+else if(!opening1 && opening2 && story_number===4)
+    stage_photo.src="img/background/16.jpg";
+else if(!opening1 && opening2 && story_number===5)
+    stage_photo.src="img/background/05.jpg";
+else if(!opening1 && opening2 && story_number===10)
+    stage_photo.src="img/background/06.jpg";
+else if(!opening1 && opening2 && story_number===14)
+    stage_photo.src="img/background/07.jpg";
+else if(!opening1 && opening2 && story_number===15)
+    stage_photo.src="img/background/06.jpg";
+else if(!opening1 && opening2 && story_number===18)
+    stage_photo.src="img/background/16.jpg";
+else if(!opening1 && opening2 && story_number===19)
+    stage_photo.src="img/background/09.jpg";
+else if(!opening1 && opening2 && story_number===24)
+    stage_photo.src="img/background/10.jpg";  // Ai出場
+else if(state==="1" && story_number===9)
+    stage_photo.src="img/background/11.jpg";
+else if(state==="1111" ||state==="1112"||state==="1113"||state==="1211"||state==="1212"||state==="1213"||state==="1221"||state==="1222")
+    stage_photo.src="img/background/12.jpg";
+else if(state==="111211" ||state==="111221"||state==="121111"||state==="121121"||state==="121211"||state==="121221"||state==="122111"||state==="122121")
+    stage_photo.src="img/background/13.jpg";
+
+make_sound();
+return;
+}
+
+const music1 = document.getElementById("music01");
+const music2 = document.getElementById("music02");
+const music3 = document.getElementById("music03");
+const music4 = document.getElementById("music04");
+
+function make_sound(){
+if(opening1 && story_number===1)
+    music1.play();
+else if(!opening1 && opening_choice && story_number===0){
+    music1.pause();
+    music1.load();
+    music2.play();
+}
+else if(!opening1 && opening2 && story_number===4){
+    music2.pause();
+    music2.load();
+    music3.play();
+}
+else if(!opening1 && opening2 && story_number===18){
+    music3.pause();
+    music3.load();
+}
+else if(!opening1 && opening2 && story_number===19)
+    music4.play();
+else if(state==="111211" ||state==="111221"||state==="121111"||state==="121121"||state==="121211"||state==="121221"||state==="122111"||state==="122121"){
+music4.pause();
+music4.load();
+music2.play();
+}
+
+   
+}
+
 
 function changebutton(){
     if(tell_story===true){
@@ -419,59 +515,6 @@ function changebutton(){
     }
 }
 
-function for_opening(){
-    if(opening1){
-        if(story_number+1<story1.length){
-            document.getElementById("btn0").innerHTML="NEXT";
-            document.getElementById("paragraph1").innerHTML=story1[story_number];
-            story_number++;
-            return;
-        }
-        document.getElementById("paragraph1").innerHTML=story1[story_number];
-        story_number=0;
-        document.getElementById("btn0").style.display="none";
-        opening1=false;
-        document.getElementById("btn01").style.display="block";
-        document.getElementById("btn02").style.display="block";
-        document.getElementById("btn03").style.display="block";
-        return;
-    }
-    if(opening_choice){
-    if(story_number+1<choice[opening_state].length){
-            document.getElementById("paragraph1").innerHTML=choice[opening_state][story_number];
-            story_number++;
-            return;
-        }
-        document.getElementById("paragraph1").innerHTML=choice[opening_state][story_number];
-        story_number=0;
-        opening_choice=false;
-        return;
-    }
-    if(opening2){
-        
-        if(story_number+1<story2.length){
-            document.getElementById("paragraph1").innerHTML=story2[story_number];
-            story_number++;
-            return;
-        }
-        document.getElementById("paragraph1").innerHTML=story2[story_number];
-        story_number=0;
-        document.getElementById("btn0").style.display="none";
-        opening2=false;
-        changebutton();
-        document.getElementById("btn1").style.display="block";
-        document.getElementById("btn2").style.display="block";
-        return;
-    }
-}
-
-function choice_close(){
-document.getElementById("btn01").style.display="none";
-document.getElementById("btn02").style.display="none";
-document.getElementById("btn03").style.display="none";
-document.getElementById("btn0").style.display="block";
-return;
-}
 
 // =======================================================================================
 //                          CODING PART (OPENING)
@@ -496,48 +539,119 @@ opening_state+="3";
 for_opening();
 }
 
+function choice_close(){
+document.getElementById("btn01").style.display="none";
+document.getElementById("btn02").style.display="none";
+document.getElementById("btn03").style.display="none";
+document.getElementById("btn0").style.display="block";
+return;
+}
+
+function for_opening(){
+    if(opening1){
+        if(story_number+1<story1.length){
+            document.getElementById("btn0").innerHTML="NEXT";
+            document.getElementById("paragraph1").innerHTML=story1[story_number];
+            story_number++;
+            changephoto();
+
+            return;
+        }
+        document.getElementById("paragraph1").innerHTML=story1[story_number];
+        story_number=0;
+        document.getElementById("btn0").style.display="none";
+        opening1=false;
+        changephoto();
+        document.getElementById("btn01").style.display="block";
+        document.getElementById("btn02").style.display="block";
+        document.getElementById("btn03").style.display="block";
+        return;
+    }
+    if(opening_choice){
+    if(story_number+1<choice[opening_state].length){
+            document.getElementById("paragraph1").innerHTML=choice[opening_state][story_number];
+            story_number++;
+            changephoto();
+            return;
+        }
+        document.getElementById("paragraph1").innerHTML=choice[opening_state][story_number];
+        story_number=0;
+        opening_choice=false;
+        changephoto();
+        return;
+    }
+    if(opening2){
+        
+        if(story_number+1<story2.length){
+            document.getElementById("paragraph1").innerHTML=story2[story_number];
+            story_number++;
+            changephoto();
+            return;
+        }
+        document.getElementById("paragraph1").innerHTML=story2[story_number];
+        story_number=0;
+        document.getElementById("btn0").style.display="none";
+        opening2=false;
+        changebutton();
+        changephoto();
+        document.getElementById("btn1").style.display="block";
+        document.getElementById("btn2").style.display="block";
+        return;
+    }
+}
+
 // =======================================================================================
 //                          CODING PART (MAIN BODY)
 // =======================================================================================
 
 function btnclick1(e){
-changephoto();
-changebutton();
 if(tell_story===true){
     story_manage();
     return;
 }
 state+="1";
 tell_story=true;
+changephoto();
 changebutton();
 story_manage();
 }
 
 
 function btnclick2(e){
-changephoto();
-changebutton();
 if(tell_story===true){
     story_manage();
     return;
 }
 state+="2";
 tell_story=true;
+changephoto();
 changebutton();
 story_manage();
 }
 
 function btnclick3(e){
-changephoto();
-changebutton();
 if(tell_story===true){
     story_manage();
     return;
 }
 state+="3";
 tell_story=true;
+changephoto();
 changebutton();
 story_manage();
+}
+
+
+function restart(e){
+state="";
+tell_story=false;
+story_number=0;
+document.getElementById("btn0").innerHTML="START";
+document.getElementById("btn0").style.display="block";
+document.getElementById("btn1").style.display="none";
+document.getElementById("restart").style.display="none";
+document.getElementById("stage").src="img/background/15.jpg";
+document.getElementById("paragraph1").innerHTML="我們來玩一個遊戲。";
 }
 
 
@@ -548,19 +662,3 @@ story_manage();
 
 
 
-
-// Tabbed Menu
-// function openMenu(evt, menuName) {
-//   var i, x, tablinks;
-//   x = document.getElementsByClassName("menu");
-//   for (i = 0; i < x.length; i++) {
-//     x[i].style.display = "none";
-//   }
-//   tablinks = document.getElementsByClassName("tablink");
-//   for (i = 0; i < x.length; i++) {
-//     tablinks[i].className = tablinks[i].className.replace(" w3-dark-grey", "");
-//   }
-//   document.getElementById(menuName).style.display = "block";
-//   evt.currentTarget.firstElementChild.className += " w3-dark-grey";
-// }
-// document.getElementById("myLink").click();
