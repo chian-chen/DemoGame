@@ -35,3 +35,13 @@ span {
     justify-content: center;
     align-items: center;
 }
+
+.link {
+    color: rgb(175, 220, 245);
+}
+
+.link:hover {
+    color: rgb(214, 175, 245);
+    text-decoration: underline;
+    cursor: grab;
+}

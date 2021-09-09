@@ -60,7 +60,8 @@ template {
 }
 
 a {
-    background-color: transparent
+    background-color: transparent;
+    color: #2196F3;
 }
 
 a:active,

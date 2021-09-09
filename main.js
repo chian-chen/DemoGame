@@ -22,7 +22,7 @@ const story1=["早上八點鐘。你坐在車內，下意識地聽著那些被�
 const story2=["傍晚，橘紅色的夕陽暈染半片天空。這座城市在白天擺脫了陰霾，可你現在巴不得再來場傾盆大雨。",
 "這樣你失控的喊叫就能被嘩啦啦的水聲淹沒，不讓旁人注意。",
 "在進家門之前，你腦中不斷重播今天下午的悲劇…",
-"（轉場）",
+"     ",
 "會議上。你整理好袖口和領子，掛起招牌笑容，踩著自信的步伐走到台上。",
 "講桌上的電腦秀著剛才助手開好的簡報檔，這位籌辦了會議召集和設備的屬下還貼心地幫你做了備忘錄，但你根本不需要。",
 "為這次簡報練講過數十次的你，早就將講稿熟記於心，甚至在說到某些關鍵詞的手勢和動作，你都精心設計。",
@@ -36,14 +36,14 @@ const story2=["傍晚，橘紅色的夕陽暈染半片天空。這座城市在�
 "你愣愣地走回講台，知道一切已經失序，而你面前正雙手抱胸的客戶，向你投來等待的眼神。",
 "接下來的半個小時，你聽見自己的嗓音逐漸嘶啞，多次練習使講稿自動化地從口中輸出，但你的腦子仍是一片空白。",
 "僵硬的雙腳被釘在原地，你使勁露出笑容，顫抖的肌肉卻讓笑容變成一副難堪的表情…。",
-"(轉場)",
-"(暱稱)，(暱稱)~你怎麼啦 ?",
+"    ",
+"主人，主人～你怎麼啦 ?",
 "你回過神來，才發現自己已經回到家中。眼前是你的小夥伴---AI。",
-"你看起來好沮喪，嘴角都要垂到下巴了。",
+"AI：你看起來好沮喪，嘴角都要垂到下巴了。",
 "和你住在同一個屋簷下的AI，是你最好的朋友、推心置腹的家人。",
 "少了職場的明爭暗鬥、現實的人情冷暖，你與AI之間有十足的信任，也知道他一心向你。",
-"看看都是誰把你欺負傻了，整個人呆愣愣的，連話都不會說。",
-"是發生了什麼事嗎？"
+"AI：看看都是誰把你欺負傻了，整個人呆愣愣的，連話都不會說。",
+"AI：是發生了什麼事嗎？"
 ];
 
 const choice={
@@ -373,6 +373,7 @@ if(_state === "1111"){
     changephoto();
     return true;
 }
+return false;
 }
 
 function story_manage(){
@@ -459,39 +460,86 @@ make_sound();
 return;
 }
 
-const music1 = document.getElementById("music01");
-const music2 = document.getElementById("music02");
-const music3 = document.getElementById("music03");
-const music4 = document.getElementById("music04");
+// =======================================================================================
+//                          MUSIC PART
+// =======================================================================================
+
+function FadeIn(sound) {
+    sound.volume=0.2;
+    sound.play();
+    var add_volume = setInterval(frame, 1000);
+    function frame(){
+    if ( sound.volume < 0.8 ){
+            sound.volume += 0.02;
+    }
+    else{
+        clearInterval(add_volume);
+        return;
+    }
+    }
+    return;
+}
+
+
+function FadeOut(sound) {
+    var add_volume = setInterval(frame, 1000);
+    function frame(){
+    if ( sound.volume > 0.2 ){
+            sound.volume -= 0.15;
+            console.log(sound.volume);
+    }
+    else{
+        clearInterval(add_volume);
+        sound.pause();
+        sound.load();
+        return;
+    }
+    }
+    return;
+}
+
+const music1 = document.getElementById("music01");  //rain1
+const music2 = document.getElementById("music02");  //relax1
+const music3 = document.getElementById("music03");  //meeting1
+const music4 = document.getElementById("music04");  //home1
+const music5 = document.getElementById("music05");  //rain2 in the car
+const music6 = document.getElementById("music06");  //relax2
+const music7 = document.getElementById("music07");  //relax3
+const music8 = document.getElementById("music08");  //meeting2
+const music9 = document.getElementById("music09");  //meeting3
+const music10 = document.getElementById("music10");  //rain at home
+const music11 = document.getElementById("music11");  //rain at home2
+
+
 
 function make_sound(){
-if(opening1 && story_number===1)
-    music1.play();
-else if(!opening1 && opening_choice && story_number===0){
-    music1.pause();
-    music1.load();
-    music2.play();
+if(opening1 && story_number===1){
+    FadeIn(music1);
+}
+else if(!opening1 && opening_choice && story_number===1){
+    FadeOut(music1);
+    // music1.load();
+    FadeIn(music2);
 }
 else if(!opening1 && opening2 && story_number===4){
     music2.pause();
     music2.load();
-    music3.play();
+    FadeIn(music3);
 }
 else if(!opening1 && opening2 && story_number===18){
     music3.pause();
-    music3.load();
 }
 else if(!opening1 && opening2 && story_number===19)
-    music4.play();
+    FadeIn(music4)
 else if(state==="111211" ||state==="111221"||state==="121111"||state==="121121"||state==="121211"||state==="121221"||state==="122111"||state==="122121"){
-music4.pause();
-music4.load();
-music2.play();
+    FadeOut(music4);
+    FadeIn(music2);
+}
 }
 
-   
-}
-
+// =======================================================================================
+//                          MUSIC PART END
+// =======================================================================================
 
 function changebutton(){
     if(tell_story===true){
@@ -646,19 +694,16 @@ function restart(e){
 state="";
 tell_story=false;
 story_number=0;
+opening_state="";
+opening1=true;
+opening2=true;
+opening_choice=true;
 document.getElementById("btn0").innerHTML="START";
 document.getElementById("btn0").style.display="block";
 document.getElementById("btn1").style.display="none";
 document.getElementById("restart").style.display="none";
 document.getElementById("stage").src="img/background/15.jpg";
 document.getElementById("paragraph1").innerHTML="我們來玩一個遊戲。";
+FadeOut(music2);
 }
-
-
-
-
-
-
-
-
 
