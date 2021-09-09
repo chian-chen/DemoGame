@@ -465,11 +465,11 @@ return;
 // =======================================================================================
 
 function FadeIn(sound) {
-    sound.volume=0.2;
+    sound.volume=0.15;
     sound.play();
     var add_volume = setInterval(frame, 1000);
     function frame(){
-    if ( sound.volume < 0.8 ){
+    if ( sound.volume < 0.75 ){
             sound.volume += 0.02;
     }
     else{
@@ -484,7 +484,7 @@ function FadeIn(sound) {
 function FadeOut(sound) {
     var add_volume = setInterval(frame, 1000);
     function frame(){
-    if ( sound.volume > 0.2 ){
+    if ( sound.volume > 0.25 ){
             sound.volume -= 0.15;
             console.log(sound.volume);
     }
@@ -516,24 +516,53 @@ function make_sound(){
 if(opening1 && story_number===1){
     FadeIn(music1);
 }
-else if(!opening1 && opening_choice && story_number===1){
+else if(opening1 && story_number===2){
+    FadeIn(music5);
+}
+else if(opening1 && story_number===9){
+    FadeOut(music5);
+}
+else if(opening1 && story_number===11){
     FadeOut(music1);
-    // music1.load();
-    FadeIn(music2);
+}
+else if(!opening1 && opening_choice && story_number===1){
+    FadeIn(music6);
+}
+else if(!opening1 && opening2 && story_number===1){
+    FadeOut(music6);
+    music11.volume=0.1;
+    music11.play();
 }
 else if(!opening1 && opening2 && story_number===4){
-    music2.pause();
-    music2.load();
+    music11.pause();
+    music11.load();
+}
+else if(!opening1 && opening2 && story_number===5){
     FadeIn(music3);
 }
-else if(!opening1 && opening2 && story_number===18){
-    music3.pause();
+else if(!opening1 && opening2 && story_number===11){
+    FadeIn(music8);
+    FadeOut(music3);
 }
-else if(!opening1 && opening2 && story_number===19)
-    FadeIn(music4)
+else if(!opening1 && opening2 && story_number===15){
+    FadeIn(music9);
+    FadeOut(music8);
+}
+else if(!opening1 && opening2 && story_number===18){
+    music9.pause();
+}
+else if(!opening1 && opening2 && story_number===19){
+    music4.volume=0.5;
+    music4.play();
+    music10.volume=0.02;
+    music10.play();
+}
 else if(state==="111211" ||state==="111221"||state==="121111"||state==="121121"||state==="121211"||state==="121221"||state==="122111"||state==="122121"){
     FadeOut(music4);
-    FadeIn(music2);
+    music10.pause();
+    music10.load();
+    music7.volume=0.05;
+    music7.play();
 }
 }
 
@@ -704,6 +733,38 @@ document.getElementById("btn1").style.display="none";
 document.getElementById("restart").style.display="none";
 document.getElementById("stage").src="img/background/15.jpg";
 document.getElementById("paragraph1").innerHTML="我們來玩一個遊戲。";
-FadeOut(music2);
+music7.pause();
+music7.load();
 }
 
+// =======================================================================================
+//                          HIDING TEXT (MAIN BODY)
+// =======================================================================================
+
+function show(e){
+    document.getElementById("show").style.display="none";
+    document.getElementById("hide").style.display="block";
+    document.getElementById("hide1").style.display="block";
+    document.getElementById("hide2").style.display="block"; 
+}
+function hide(e){
+    document.getElementById("show").style.display="block";
+    document.getElementById("hide").style.display="none";
+    document.getElementById("hide1").style.display="none";
+    document.getElementById("hide2").style.display="none"; 
+}
+
+function show_game(e){
+    document.getElementById("show_game").style.display="none";
+    document.getElementById("game1").style.display="block";
+    document.getElementById("game2").style.display="block";
+    document.getElementById("game3").style.display="block"; 
+    document.getElementById("hide_game").style.display="block"; 
+}
+function hide_game(e){
+    document.getElementById("show_game").style.display="block";
+    document.getElementById("game1").style.display="none";
+    document.getElementById("game2").style.display="none";
+    document.getElementById("game3").style.display="none";
+    document.getElementById("hide_game").style.display="none";
+}
