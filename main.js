@@ -552,7 +552,7 @@ else if(!opening1 && opening2 && story_number===18){
     music9.pause();
 }
 else if(!opening1 && opening2 && story_number===19){
-    music4.volume=0.5;
+    music4.volume=0.1;
     music4.play();
     music10.volume=0.02;
     music10.play();
